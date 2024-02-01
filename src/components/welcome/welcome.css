@@ -1,0 +1,54 @@
+.welcome-img {
+    width: 40%;
+    border-radius: 3em;
+}
+
+.welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 8em;
+}
+
+.welcome h2 {
+    margin-top: 2em;
+}
+
+.welcome p {
+    color: #454545;
+    width: 35%;
+    margin-top: 1em;
+}
+
+.welcome-buttons {
+    display: flex;
+    gap: 3em;
+    margin-top: 3em;
+}
+
+.welcome button {
+    background-color: #efefef;
+    box-shadow: none;
+    padding: 0.8em 1.6em;
+    border: none;
+    border-radius: 0.5em;
+    font-size: 18px;
+}
+
+.welcome-modal {
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    background-color: #efefef;
+}
+
+.welcome-modal-bg {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.5;
+}
