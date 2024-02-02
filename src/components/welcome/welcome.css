@@ -27,7 +27,7 @@
     margin-top: 3em;
 }
 
-.welcome button {
+.welcome-button {
     background-color: #efefef;
     box-shadow: none;
     padding: 0.8em 1.6em;
@@ -36,11 +36,9 @@
     font-size: 18px;
 }
 
-.welcome-modal {
-    position: absolute;
-    width: 60%;
-    height: 60%;
-    background-color: #efefef;
+.welcome-button:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
 }
 
 .welcome-modal-bg {

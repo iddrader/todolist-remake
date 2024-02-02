@@ -1,0 +1,43 @@
+.register-modal {
+    position: absolute;
+    width: 30em;
+    background-color: #efefef;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.register-modal button {
+    border-radius: 20%;
+    background-color: #ccc;
+    margin: 12px;
+    padding: 4px;
+    border: none;
+}
+
+.register-modal > form {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 2em;
+    width: 100%;
+}
+
+.register-modal label {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    font-size: 14px;
+    color: #444;
+}
+
+.register-modal input {
+    height: 3em;
+    border: 1px solid #aaa;
+    border-radius: 12px;
+}
+
+.register-modal input[type="submit"] {
+    margin-top: 2em;
+}
+
