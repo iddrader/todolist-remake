@@ -1,10 +1,31 @@
 import React from 'react'
 import './registerModal.css'
+import supabase from '../../api/api';
 
 const RegisterModal = (props) => {
+
+    async function register(event) {
+        event.preventDefault();
+        const form = event.target.form;
+        if (form.password1.value != form.password2.value) return;
+
+        const { data, error } = await supabase.auth.signUp({
+            email: form.login.value,
+            password: form.password1.value,
+        })
+
+        if(error){
+            alert(error)
+        } else {
+            alert("Registered successfully!")
+            props.setIsLoggedIn(true)
+        }
+    }
+
   return (
+    
     <div className='register-modal'>
-        <form action="POST">
+        <form action="">
             <label htmlFor="login">
                 Login
                 <input type="text" name='login' id='login'/>
@@ -17,9 +38,8 @@ const RegisterModal = (props) => {
                 Confirm Password
                 <input type="password" name="password2" id="password2" />
             </label>
-            <input type="submit" />
+            <input type="submit" onClick={register}/>
         </form>
-        <button onClick={props.handleRegisterModal}>Close</button>
     </div>
   )
 }

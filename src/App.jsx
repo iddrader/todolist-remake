@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import Welcome from './components/welcome/Welcome';
+import Tasks from './components/tasks/Tasks';
 import {Routes, Route} from 'react-router-dom'
+import supabase from './api/api';
 
 const App = () => {
-  return (
-    <div className='main'>
-        <Sidebar />
-        <Routes>
-            <Route path="welcome" element={<Welcome />} />
-            {/* <Route path="tasks" element={<Tasks />} />
-            <Route path="profile" element={<Profile />} /> */}
-        </Routes>
-    </div>
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    return (
+            <div className='main'>
+                <Sidebar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+                <Routes>
+                    <Route path="welcome" element={<Welcome isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
+                    <Route path="tasks" element={<Tasks />} />
+                    {/* <Route path="profile" element={<Profile />} /> */}
+                </Routes>
+            </div>
     )
 }
 

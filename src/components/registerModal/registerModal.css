@@ -1,6 +1,6 @@
 .register-modal {
     position: absolute;
-    width: 30em;
+    width: min(30em);
     background-color: #efefef;
     display: flex;
     align-items: flex-start;
