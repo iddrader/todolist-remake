@@ -3,16 +3,27 @@ import Sidebar from './components/sidebar/Sidebar';
 import Welcome from './components/welcome/Welcome';
 import Tasks from './components/tasks/Tasks';
 import {Routes, Route} from 'react-router-dom'
-import supabase from './api/api';
+import {activeSession, supabase} from './api/api';
+import { useEffect } from 'react';
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [session, setSession] = useState();
 
+    useEffect(() => {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+          setSession(session)
+        })
+    
+        supabase.auth.onAuthStateChange((_event, session) => {
+          setSession(session)
+        })
+      }, [])
+        
     return (
             <div className='main'>
-                <Sidebar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+                <Sidebar session={session} />
                 <Routes>
-                    <Route path="welcome" element={<Welcome isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
+                    <Route path="welcome" element={<Welcome session={session}/>} />
                     <Route path="tasks" element={<Tasks />} />
                     {/* <Route path="profile" element={<Profile />} /> */}
                 </Routes>

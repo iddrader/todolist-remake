@@ -1,8 +1,8 @@
 import React from 'react'
 import './registerModal.css'
-import supabase from '../../api/api';
+import { supabase } from '../../api/api';
 
-const RegisterModal = (props) => {
+const RegisterModal = () => {
 
     async function register(event) {
         event.preventDefault();
@@ -17,8 +17,7 @@ const RegisterModal = (props) => {
         if(error){
             alert(error)
         } else {
-            alert("Registered successfully!")
-            props.setIsLoggedIn(true)
+            alert("Registered successfully! Please confirm your email")
         }
     }
 

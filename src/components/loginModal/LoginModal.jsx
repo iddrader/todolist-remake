@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import './loginModal.css'
-import supabase from '../../api/api.js'
+import { supabase } from '../../api/api.js'
 import { useState } from 'react'
 
 
@@ -8,7 +8,7 @@ const LoginModal = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function login(event) {
+  async function handleLogin(event) {
     event.preventDefault();
     const form = event.target.form;
 
@@ -17,19 +17,12 @@ const LoginModal = (props) => {
       password: form.password.value
     })
 
-    if(error) {
-      alert(error)
-    } else {
-      props.setIsLoggedIn(true);
-    }
-
+    if(error) alert(error)
   }
-  console.log(props.isLoggedIn)
-
 
   return (
     <div className='login-modal'>
-      {props.isLoggedIn ? <h3>"You have successfully logged in!"</h3> :
+      { props.session ? <h3>"You have successfully logged in!"</h3> :
         <form action="">
             <label htmlFor="login">
                 Login
@@ -39,7 +32,7 @@ const LoginModal = (props) => {
                 Password
                 <input type="password" name="password" id="password" />
             </label>
-            <input type="submit" onClick={login}/>
+            <input type="submit" onClick={handleLogin}/>
         </form>}
     </div>
   )

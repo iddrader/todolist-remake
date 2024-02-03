@@ -4,6 +4,7 @@ import './welcome.css'
 import { useState } from 'react'
 import LoginModal from '../loginModal/LoginModal'
 import RegisterModal from '../registerModal/RegisterModal'
+import { activeSession } from '../../api/api'
 
 
 const Welcome = (props) => {
@@ -32,18 +33,18 @@ const Welcome = (props) => {
       : <></>}
       
       {loginModalActive ? 
-      <LoginModal isLoggedIn={props.isLoggedIn} setIsLoggedIn={props.setIsLoggedIn} />
+      <LoginModal session={props.session}/>
       : <></>}
 
       {registerModalActive ? 
-      <RegisterModal isLoggedIn={props.isLoggedIn} setIsLoggedIn={props.setIsLoggedIn} />
+      <RegisterModal />
       : <></>}
 
       <img src={welcomeImage} alt="welcome image" className='welcome-img'/>
       <h2>Welcome to Tasks app!</h2>
       <p>A to-do list is just a list of things you have to-do. That means basically anything and everything can be on your to-do list—but just because you've written your to-dos down doesn't mean your to-do list is actually useful. Effectively tracking when your work is due can help you prioritize and get great work done.</p>
       
-      { props.isLoggedIn ? <p>Welcome! you're already logged in!</p> :
+      { props.session ? <p>Welcome! you're already logged in!</p> :
       <div className="welcome-buttons">
         <button className='welcome-button' onClick={handleLoginModal}>Log In</button>
         <button className='welcome-button' onClick={handleRegisterModal}>Register</button>

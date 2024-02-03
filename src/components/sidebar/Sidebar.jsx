@@ -4,8 +4,17 @@ import './sidebar.css'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import { supabase } from '../../api/api';
 
-const Sidebar = () => {
+
+const Sidebar = (props) => {
+  
+  async function handleLogout() {
+    const { error } = await supabase.auth.signOut();
+    if(error) console.log(error)
+  }
+
   return (
     <div className='sidebar'>
       <h1>Tasks</h1>
@@ -24,6 +33,12 @@ const Sidebar = () => {
           <AccountBoxOutlinedIcon />
           Profile
         </Link>
+
+        {props.session ?
+        <a className='sidebar-item' onClick={handleLogout}>
+          <LogoutOutlinedIcon />
+          Logout
+        </a> : <></>}
         
       </div>
       
