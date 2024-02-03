@@ -1,0 +1,38 @@
+.new-task-btn {
+    border: none;
+    margin: 2em 0;
+    padding: 1em;
+    font-size: 18px;
+    border-radius: 1em;
+}
+
+.tasks-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.task {
+    width: 20em;
+    padding: 1em;
+    height: 6em;
+    border-radius: 1em;
+    background-color: #efeff8;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4em;
+}
+
+.task > p {
+    grid-column: span 2;
+}
+
+.task > button {
+    width: fit-content;
+    justify-self: end;
+    border: 1px gray solid;
+    padding: 0.4em;
+    font-size: 12px;
+    border-radius: 0.6em;
+}

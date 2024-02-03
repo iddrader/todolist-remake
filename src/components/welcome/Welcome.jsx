@@ -4,8 +4,6 @@ import './welcome.css'
 import { useState } from 'react'
 import LoginModal from '../loginModal/LoginModal'
 import RegisterModal from '../registerModal/RegisterModal'
-import { activeSession } from '../../api/api'
-
 
 const Welcome = (props) => {
   const [loginModalActive, setLoginModalActive] = useState(false);

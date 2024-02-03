@@ -3,7 +3,7 @@ import Sidebar from './components/sidebar/Sidebar';
 import Welcome from './components/welcome/Welcome';
 import Tasks from './components/tasks/Tasks';
 import {Routes, Route} from 'react-router-dom'
-import {activeSession, supabase} from './api/api';
+import {supabase} from './api/api';
 import { useEffect } from 'react';
 
 const App = () => {
@@ -22,11 +22,14 @@ const App = () => {
     return (
             <div className='main'>
                 <Sidebar session={session} />
+                { session ? 
                 <Routes>
                     <Route path="welcome" element={<Welcome session={session}/>} />
-                    <Route path="tasks" element={<Tasks />} />
+                    <Route path="tasks" element={<Tasks session={session} />} />
                     {/* <Route path="profile" element={<Profile />} /> */}
                 </Routes>
+                : <Welcome session={session}/>}
+                
             </div>
     )
 }
