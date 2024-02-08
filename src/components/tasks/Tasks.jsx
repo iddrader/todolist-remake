@@ -15,13 +15,13 @@ const Tasks = (props) => {
     supabase.from('tasks').select()
       .eq('user_id', props.session.user.id)
       .then(({data, error}) => setTasks(prev => data))
-  }, [])
+  }, [creatingNewTask])
 
   return (
-    <div>
+    <div className='tasks-content'>
       <div>
         <button className='new-task-btn' onClick={handleNewTaskClick}>New task</button>
-        {creatingNewTask ? 
+        {creatingNewTask &&
         <form className="new-task-form">
           <label htmlFor="title">
             Title
@@ -35,20 +35,20 @@ const Tasks = (props) => {
             Category
             <input type="text" name='category' id='category'/>
           </label>
-        </form>
-        : <></>}
+          <button type="submit">Create new task</button>
+        </form> }
       </div>
       <div className='tasks-list'>
-      { tasks ? 
-      tasks.map( task => 
-          <div key={task.id} className='task'>
-            <h4>{task.title}</h4>
-            <button>Delete</button>
-            <p>{task.description}</p>
-            <div>{task.category}</div>
-            <div>{task.doneBefore}</div>
-          </div>
-      ): <></>}
+        { tasks &&
+        tasks.map( task => 
+            <div key={task.id} className='task'>
+              <h4>{task.title}</h4>
+              <button>Delete</button>
+              <p>{task.description}</p>
+              <div>{task.category}</div>
+              <div>{task.doneBefore}</div>
+            </div>
+        )}
       </div>
     </div>
   )

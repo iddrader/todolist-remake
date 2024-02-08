@@ -18,11 +18,7 @@ const Sidebar = (props) => {
   return (
     <div className='sidebar'>
       <h1>Tasks</h1>
-      <div className="links">
-        <Link to={`welcome`} className='sidebar-item'>
-          <HomeOutlinedIcon />
-          Welcome
-        </Link>
+      <div className="links"> 
 
         <Link to={`tasks`} className='sidebar-item'>
           <TaskOutlinedIcon />
@@ -34,11 +30,11 @@ const Sidebar = (props) => {
           Profile
         </Link>
 
-        {props.session ?
+        {props.session &&
         <a className='sidebar-item' onClick={handleLogout}>
           <LogoutOutlinedIcon />
           Logout
-        </a> : <></>}
+        </a> }
         
       </div>
       

@@ -8,6 +8,10 @@
     padding-top: 3em;
 }
 
+.sidebar > h1 {
+    font-weight: 600;
+}
+
 .links {
     display: flex;
     flex-direction: column;
@@ -27,6 +31,6 @@
 }
 
 .sidebar-item:hover {
-    transform: scale(1.05);
+    transform: translateX(10px);
     transition: transform 0.1s;
 }

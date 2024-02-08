@@ -10,27 +10,28 @@ const App = () => {
     const [session, setSession] = useState();
 
     useEffect(() => {
-        supabase.auth.getSession().then(({ data: { session } }) => {
-          setSession(session)
-        })
-    
-        supabase.auth.onAuthStateChange((_event, session) => {
-          setSession(session)
-        })
-      }, [])
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        setSession(session)
+      })
+  
+      supabase.auth.onAuthStateChange((_event, session) => {
+        setSession(session)
+      })
+    }, [])
         
     return (
-            <div className='main'>
-                <Sidebar session={session} />
-                { session ? 
-                <Routes>
-                    <Route path="welcome" element={<Welcome session={session}/>} />
-                    <Route path="tasks" element={<Tasks session={session} />} />
-                    {/* <Route path="profile" element={<Profile />} /> */}
-                </Routes>
-                : <Welcome session={session}/>}
-                
-            </div>
+      <div className='main'>
+          { session ? 
+          <>
+            <Sidebar session={session} />
+            <Routes>
+                <Route path="tasks" element={<Tasks session={session} />} />
+                {/* <Route path="profile" element={<Profile />} /> */}
+            </Routes>
+          </>
+          : <Welcome />}
+          
+      </div>
     )
 }
 

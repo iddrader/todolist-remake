@@ -1,10 +1,13 @@
 .register-modal {
     position: absolute;
-    width: min(30em);
+    width: 32em;
     background-color: #efefef;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    animation-name: showModal;
+    animation-duration: 0.4s;
+    border-radius: 1em;
 }
 
 .register-modal button {
@@ -41,3 +44,13 @@
     margin-top: 2em;
 }
 
+@keyframes showModal {
+    from {
+        transform: translateY(-60px);
+        opacity: 0.8;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
