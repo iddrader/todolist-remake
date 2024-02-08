@@ -11,31 +11,65 @@ const Tasks = (props) => {
     setCreatingNewTask(prev => !prev)
   }
 
-  useEffect( () => {
-    supabase.from('tasks').select()
+  async function getTasks() {
+    const { data, error } = 
+    await supabase.from('tasks').select()
       .eq('user_id', props.session.user.id)
-      .then(({data, error}) => setTasks(prev => data))
-  }, [creatingNewTask])
+    setTasks(prev => data)
+  }
+
+  const handleFormClick = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    console.log(form.title.value)
+
+    supabase
+      .from('tasks')
+      .insert({
+        title: form.title.value,
+        description: form.description.value,
+        user_id: props.session.user.id,
+        category: form.category.value,
+        category_color: form.category.category_color,
+      })
+      .then(({ error }) => console.log(error))
+      .then(handleNewTaskClick())
+      .then(getTasks())
+  }
+
+  async function handleDeleteClick(event) {
+    const id = event.target.id;
+    const { error } = 
+    await supabase
+      .from('tasks')
+      .delete()
+      .eq('id', id)
+    getTasks();
+  }
+
+  useEffect( () => {
+    getTasks();
+  }, [])
 
   return (
     <div className='tasks-content'>
       <div>
         <button className='new-task-btn' onClick={handleNewTaskClick}>New task</button>
         {creatingNewTask &&
-        <form className="new-task-form">
+        <form className="new-task-form" onSubmit={handleFormClick}>
           <label htmlFor="title">
             Title
-            <input type="text" name='title' id='title'/>
+            <input type="text" name='title' id='title' required/>
           </label>
           <label htmlFor="title">
             Description
-            <input type="text" name='description' id='description'/>
+            <input type="text" name='description' id='description' />
           </label>
           <label htmlFor="title">
             Category
             <input type="text" name='category' id='category'/>
           </label>
-          <button type="submit">Create new task</button>
+          <button type="submit" >Create new task</button>
         </form> }
       </div>
       <div className='tasks-list'>
@@ -43,7 +77,7 @@ const Tasks = (props) => {
         tasks.map( task => 
             <div key={task.id} className='task'>
               <h4>{task.title}</h4>
-              <button>Delete</button>
+              <button onClick={handleDeleteClick} id={task.id}>Delete</button>
               <p>{task.description}</p>
               <div>{task.category}</div>
               <div>{task.doneBefore}</div>
