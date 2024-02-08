@@ -25,8 +25,9 @@ const App = () => {
           <>
             <Sidebar session={session} />
             <Routes>
-                <Route path="tasks" element={<Tasks session={session} />} />
-                {/* <Route path="profile" element={<Profile />} /> */}
+              <Route path="/" element={<Tasks session={session} />} />
+              <Route path="tasks" element={<Tasks session={session} />} />
+              {/* <Route path="profile" element={<Profile />} /> */}
             </Routes>
           </>
           : <Welcome />}

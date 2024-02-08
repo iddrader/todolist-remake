@@ -1,4 +1,5 @@
 .tasks-content {
+    max-height: 86svh;
     display: flex;
     flex-direction: column;
     gap: 2em;
@@ -9,7 +10,7 @@
     margin: 2em 0;
     padding: 1em;
     font-size: 18px;
-    border-radius: 1em;
+    border-radius: 0.4em;
 }
 
 .tasks-list {
@@ -17,41 +18,52 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 2em;
+    height: 100%;
+    flex: 0;
 }
 
 .task {
     width: 20em;
     padding: 1em;
     height: 6em;
-    border-radius: 1em;
-    background-color: #efeff8;
+    border-radius: 0.2em;
     display: grid;
     grid-template-rows: 1fr 2fr 1fr;
     grid-template-columns: 1fr 1fr;
     gap: 0.4em;
+    border: #ccc 2px solid;
+    box-shadow: #eee 6px 6px 8px;
 }
 
 .task > p {
     grid-column: span 2;
 }
 
-.task > button {
+.task-buttons {
+    justify-self: end;
+    display: flex;
+    gap: 6px;
+}
+
+.task-buttons > button {
     width: fit-content;
     justify-self: end;
-    border: 1px gray solid;
-    padding: 0.4em;
+    background-color: white;
+    border: none;
+    padding: 0.3em;
     font-size: 12px;
     border-radius: 0.6em;
 }
 
 .new-task-form {
     width: 40%;
-    background-color: #efeff8;
+    background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
     display: flex;
     flex-direction: column;
     padding: 1em;
-    border-radius: 1em;
+    border-radius: 0.2em;
     gap: 1em;
+    border: 2px #ccc solid;
 }
 
 .new-task-form button {
@@ -66,5 +78,8 @@
 }
 
 .new-task-form input {
-    padding: 1em 0
+    padding: 1em 0;
+}
+.new-task-form input[type="color"] {
+    padding: 0;
 }

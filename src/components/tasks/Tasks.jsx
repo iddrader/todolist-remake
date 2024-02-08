@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { supabase } from '../../api/api';
 import './tasks.css'
+import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+
 
 const Tasks = (props) => {
   const [tasks, setTasks] = useState();
@@ -15,13 +18,15 @@ const Tasks = (props) => {
     const { data, error } = 
     await supabase.from('tasks').select()
       .eq('user_id', props.session.user.id)
+      .eq('is_done', false)
     setTasks(prev => data)
   }
 
   const handleFormClick = (event) => {
     event.preventDefault();
     const form = event.target;
-    console.log(form.title.value)
+
+    console.log(form.categoryColor.value)
 
     supabase
       .from('tasks')
@@ -30,11 +35,10 @@ const Tasks = (props) => {
         description: form.description.value,
         user_id: props.session.user.id,
         category: form.category.value,
-        category_color: form.category.category_color,
+        category_color: form.categoryColor.value,
       })
       .then(({ error }) => console.log(error))
       .then(handleNewTaskClick())
-      .then(getTasks())
   }
 
   async function handleDeleteClick(event) {
@@ -49,11 +53,11 @@ const Tasks = (props) => {
 
   useEffect( () => {
     getTasks();
-  }, [])
+  }, [creatingNewTask])
 
   return (
     <div className='tasks-content'>
-      <div>
+      <div className='new-task'>
         <button className='new-task-btn' onClick={handleNewTaskClick}>New task</button>
         {creatingNewTask &&
         <form className="new-task-form" onSubmit={handleFormClick}>
@@ -69,6 +73,10 @@ const Tasks = (props) => {
             Category
             <input type="text" name='category' id='category'/>
           </label>
+          <label htmlFor="categoryColor">
+            Category Color
+            <input type="color" name="categoryColor" id="categoryColor" />
+          </label>
           <button type="submit" >Create new task</button>
         </form> }
       </div>
@@ -77,9 +85,16 @@ const Tasks = (props) => {
         tasks.map( task => 
             <div key={task.id} className='task'>
               <h4>{task.title}</h4>
-              <button onClick={handleDeleteClick} id={task.id}>Delete</button>
+              <div className='task-buttons'>
+                <button>
+                  <DoneOutlinedIcon />
+                </button>
+                <button>
+                  <DeleteOutlinedIcon id={task.id} onClick={handleDeleteClick}/>
+                </button>
+              </div>
               <p>{task.description}</p>
-              <div>{task.category}</div>
+              <div style={{background: task.category_color}}>{task.category}</div>
               <div>{task.doneBefore}</div>
             </div>
         )}
