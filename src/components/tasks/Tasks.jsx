@@ -55,6 +55,20 @@ const Tasks = (props) => {
     getTasks();
   }, [creatingNewTask])
 
+  async function handleDoneClick(event) {
+    const id = event.target.id;
+
+    console.log(event.target.id)
+
+    const { error } = await supabase
+      .from('tasks')
+      .update({ is_done: true })
+      .eq('id', id)
+
+    getTasks();
+
+  }
+
   return (
     <div className='tasks-content'>
       <div className='new-task'>
@@ -87,14 +101,18 @@ const Tasks = (props) => {
               <h4>{task.title}</h4>
               <div className='task-buttons'>
                 <button>
-                  <DoneOutlinedIcon />
+                  <DoneOutlinedIcon id={task.id} onClick={handleDoneClick} />
                 </button>
                 <button>
-                  <DeleteOutlinedIcon id={task.id} onClick={handleDeleteClick}/>
+                  <DeleteOutlinedIcon taskid={task.id} onClick={handleDeleteClick}/>
                 </button>
               </div>
               <p>{task.description}</p>
-              <div style={{background: task.category_color}}>{task.category}</div>
+              
+              <div style={{background: task.category_color}} className="category">
+                {task.category}
+              </div>
+              
               <div>{task.doneBefore}</div>
             </div>
         )}

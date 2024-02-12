@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import Welcome from './components/welcome/Welcome';
 import Tasks from './components/tasks/Tasks';
+import Profile from './components/profile/Profile';
 import {Routes, Route} from 'react-router-dom'
 import {supabase} from './api/api';
 import { useEffect } from 'react';
@@ -27,7 +28,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Tasks session={session} />} />
               <Route path="tasks" element={<Tasks session={session} />} />
-              {/* <Route path="profile" element={<Profile />} /> */}
+              <Route path="profile" element={<Profile session={session} />} />
             </Routes>
           </>
           : <Welcome />}
