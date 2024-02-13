@@ -22,13 +22,11 @@ const Tasks = (props) => {
     setTasks(prev => data)
   }
 
-  const handleFormClick = (event) => {
+  async function handleFormClick(event) {
     event.preventDefault();
     const form = event.target;
 
-    console.log(form.categoryColor.value)
-
-    supabase
+    const { error } = await supabase
       .from('tasks')
       .insert({
         title: form.title.value,
@@ -36,9 +34,9 @@ const Tasks = (props) => {
         user_id: props.session.user.id,
         category: form.category.value,
         category_color: form.categoryColor.value,
-      })
-      .then(({ error }) => console.log(error))
-      .then(handleNewTaskClick())
+      });
+    handleNewTaskClick();
+    getTasks();
   }
 
   async function handleDeleteClick(event) {
@@ -53,7 +51,7 @@ const Tasks = (props) => {
 
   useEffect( () => {
     getTasks();
-  }, [creatingNewTask])
+  }, [])
 
   async function handleDoneClick(event) {
     const id = event.target.id;
@@ -104,7 +102,7 @@ const Tasks = (props) => {
                   <DoneOutlinedIcon id={task.id} onClick={handleDoneClick} />
                 </button>
                 <button>
-                  <DeleteOutlinedIcon taskid={task.id} onClick={handleDeleteClick}/>
+                  <DeleteOutlinedIcon id={task.id} onClick={handleDeleteClick}/>
                 </button>
               </div>
               <p>{task.description}</p>
