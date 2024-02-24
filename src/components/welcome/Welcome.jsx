@@ -4,6 +4,7 @@ import './welcome.css'
 import { useState } from 'react'
 import LoginModal from '../loginModal/LoginModal'
 import RegisterModal from '../registerModal/RegisterModal'
+import { supabase } from '../../api/api'
 
 const Welcome = (props) => {
   const [loginModalActive, setLoginModalActive] = useState(false);
@@ -15,6 +16,13 @@ const Welcome = (props) => {
 
   const handleRegisterModal = () => {
     setRegisterModalActive(prev => !prev)
+  }
+
+  async function handleDemoLogin() {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: 'demo@demo.com',
+      password: 'demo'
+    })
   }
 
   const handleBgClick = () => {
@@ -40,7 +48,7 @@ const Welcome = (props) => {
         <div className="welcome-buttons">
           <button className='welcome-button' onClick={handleLoginModal}>Log In</button>
           <button className='welcome-button' onClick={handleRegisterModal}>Register</button>
-          <button className='welcome-button' id='demo-button'>Demo</button>
+          <button className='welcome-button' id='demo-button' onClick={handleDemoLogin}>Demo</button>
         </div>
       </div>
         

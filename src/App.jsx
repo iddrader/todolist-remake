@@ -24,14 +24,14 @@ const App = () => {
       <div className='main'>
           { session ? 
           <>
-            <Sidebar session={session} />
+            <Sidebar session={session} setSession={setSession}/>
             <Routes>
               <Route path="/" element={<Tasks session={session} />} />
               <Route path="tasks" element={<Tasks session={session} />} />
               <Route path="profile" element={<Profile session={session} />} />
             </Routes>
           </>
-          : <Welcome />}
+          : <Welcome setSession={setSession}/>}
           
       </div>
     )
