@@ -93,3 +93,14 @@
     height: fit-content;
     text-shadow: 0 0 2px white;
 }
+
+@media (max-width: 600px) {
+    .tasks-content {
+        width: 90%;
+        margin: auto;
+    }
+
+    .new-task-form {
+        width: 80%;
+    }
+}

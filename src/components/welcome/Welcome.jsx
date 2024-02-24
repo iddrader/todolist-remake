@@ -40,6 +40,7 @@ const Welcome = (props) => {
         <div className="welcome-buttons">
           <button className='welcome-button' onClick={handleLoginModal}>Log In</button>
           <button className='welcome-button' onClick={handleRegisterModal}>Register</button>
+          <button className='welcome-button' id='demo-button'>Demo</button>
         </div>
       </div>
         

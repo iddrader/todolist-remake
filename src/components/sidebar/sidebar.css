@@ -8,6 +8,7 @@
     padding-top: 3em;
 }
 
+
 .sidebar > h1 {
     font-weight: 600;
 }
@@ -33,4 +34,29 @@
 .sidebar-item:hover {
     transform: translateX(10px);
     transition: transform 0.1s;
+}
+
+
+@media (max-width: 600px) {
+    .sidebar {
+        flex-direction: row;
+        padding-top: 0;
+        width: 100vw;
+    }
+
+    .sidebar > h1 {
+        display: none;
+    }
+
+    .sidebar-item {
+        padding: 0;
+    }
+
+    .links {
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 24px;
+        margin: 0 12px 0 0;
+
+    }
 }

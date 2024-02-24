@@ -9,8 +9,18 @@
     gap: 80px;
     align-items: center;
     grid-column: span 2;
-    width: 60%;
+    max-width: 900px;
+    margin: 24px;
     justify-self: center;
+}
+
+@media (max-width: 600px) {
+    .welcome {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        gap: 0;
+    }
 }
 
 .welcome-content {
@@ -29,8 +39,10 @@
 }
 
 .welcome-buttons {
-    display: flex;
-    gap: 3em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1em;
 }
 
 .welcome-button {
@@ -45,6 +57,10 @@
 .welcome-button:hover {
     transform: scale(1.05);
     transition: transform 0.2s;
+}
+
+#demo-button {
+    grid-column: span 2;
 }
 
 .welcome-modal-bg {
