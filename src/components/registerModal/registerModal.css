@@ -1,6 +1,5 @@
 .register-modal {
     position: absolute;
-    width: 32em;
     background-color: #efefef;
     display: flex;
     align-items: flex-start;
@@ -52,5 +51,12 @@
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .register-modal {
+        left: 25%;
+        top: 30%;
     }
 }

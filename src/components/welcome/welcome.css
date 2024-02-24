@@ -17,9 +17,9 @@
 @media (max-width: 600px) {
     .welcome {
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         justify-content: flex-start;
-        gap: 0;
+        gap: 12px;
     }
 }
 
