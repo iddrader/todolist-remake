@@ -1,6 +1,10 @@
 .login-modal {
     position: absolute;
-    left: 40%;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 300px;
     grid-template-columns: span 2;
     background-color: #efefef;
     display: flex;
@@ -9,13 +13,6 @@
     animation-name: showModal;
     animation-duration: 0.4s;
     border-radius: 1em;
-}
-
-@media (max-width: 600px) {
-    .login-modal {
-        left: 25%;
-        top: 30%;
-    }
 }
 
 .login-modal button {

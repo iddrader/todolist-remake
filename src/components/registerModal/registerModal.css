@@ -1,5 +1,10 @@
 .register-modal {
     position: absolute;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 300px;
     background-color: #efefef;
     display: flex;
     align-items: flex-start;
@@ -51,12 +56,5 @@
     to {
         transform: translateY(0);
         opacity: 1;
-    }
-}
-
-@media (max-width: 600px) {
-    .register-modal {
-        left: 25%;
-        top: 30%;
     }
 }
